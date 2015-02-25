@@ -165,6 +165,8 @@ gulp.task('dev:build:example:copy', function(){
         .pipe(gulp.dest(EXAMPLE_DIST_PATH))
         .pipe(connect.reload());
 })
+gulp.task('build:example:copy', ['prepare:examples', 'dev:build:example:copy'])
+
 
 gulp.task('dev:build:example:scripts', buildExampleScripts(true));
 gulp.task('build:example:scripts', ['prepare:examples'], buildExampleScripts());
@@ -177,14 +179,15 @@ gulp.task('build:example:scripts', ['prepare:examples'], buildExampleScripts());
 gulp.task('build:examples', [
 	'build:example:files',
 	'build:example:css',
-	'build:example:scripts'
+	'build:example:scripts',
+    'build:example:copy'
 ]);
 
 gulp.task('watch:examples', [
 	'dev:build:example:files',
 	'dev:build:example:css',
 	'dev:build:example:scripts',
-    'dev:build:example:copy'
+	'dev:build:example:copy'
 ], function() {
 	gulp.watch(EXAMPLE_FILES.map(function(i) { return EXAMPLE_SRC_PATH + '/' + i }), ['dev:build:example:files']);
 	gulp.watch([EXAMPLE_SRC_PATH + '/' + EXAMPLE_LESS], ['dev:build:example:css']);
