@@ -1,3 +1,8 @@
+This project has been superseded by https://github.com/mbrevda/react-image.
+===
+and is no longer being activly devloped!
+
+
 React Image
 =================
 
